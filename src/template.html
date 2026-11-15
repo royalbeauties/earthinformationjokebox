@@ -40,6 +40,8 @@ button{font-family:inherit;cursor:pointer;border:none;color:inherit}
 .patch.on{filter:none;opacity:1;border:2px solid var(--yellow);background:radial-gradient(circle,#ffe58a55,#ffffff10);box-shadow:0 0 14px #ffd84d88}
 .pill{background:#ffffff1a;border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500}
 .pill.on{background:var(--teal);color:#062a2a}
+.guideLink{color:#fff;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.guideLink:hover,.guideLink:focus-visible{background:#ffffff30}
 /* Julie */
 .julie{display:flex;gap:12px;align-items:flex-start}
 .avatar{flex:0 0 auto;animation:float 3.2s ease-in-out infinite}
@@ -290,6 +292,7 @@ button,.pic,.mcard,.word,.qopt{-webkit-tap-highlight-color:transparent;touch-act
  .badges small{font-size:12px}
  .patch{width:30px;height:30px;font-size:16px}
  .pill{font-size:14px;padding:7px 12px}
+ .top .pill{flex:0 0 auto}
  .cabinet{padding:52px 12px 16px;border-width:6px;border-radius:160px 160px 22px 22px/64px 64px 22px 22px}
  .marquee{font-size:18px;letter-spacing:3px;top:12px}
  .lights{gap:8px} .lights i:nth-child(n+11){display:none}
@@ -335,6 +338,7 @@ button,.pic,.mcard,.word,.qopt{-webkit-tap-highlight-color:transparent;touch-act
   <header class="top">
     <button class="logo" id="homeBtn" title="Home"><span class="rk">🌍</span>Earth Jukebox <span>with Agent Julie</span></button>
     <div class="badges" id="badges"></div>
+    <a class="pill guideLink" id="guideLink" href="guide/" title="Guide: how to play and the idea behind the Earth Jukebox">📖 How to play</a>
     <button class="pill" id="voiceBtn" title="Agent Julie reads everything out loud">🔊 Julie talks: OFF</button>
   </header>
 
