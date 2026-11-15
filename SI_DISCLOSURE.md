@@ -14,11 +14,12 @@ The NASA Space Apps Challenge permits Super Intelligence (SI) tools (chatbots, l
 | Text (in-game explanations, quizzes, guide website, README) | SI tools | Written with SI tools from the team's design. |
 | Agent Julie drawing (SVG in `src/template.html`) | SI tools | The character concept is the team's; the drawing was generated as SVG code by SI. It carries a visible "SI-generated" label in the game. |
 | Guide screenshots (`guide/img/*.jpg`) | SI tools | Captured by an SI tool (Claude) from the prototype. Each has a visible "SI-generated screenshot (Claude)" watermark and SI metadata (EXIF ImageDescription/Software and JPEG comment). |
+| Guide gameplay clips (`guide/video/*.mp4`, `*.webm`) | SI tools | Silent screen recordings of the prototype captured by an SI tool (Claude). Each frame carries a visible "SI-generated video (Claude)" watermark, and the files carry an SI note in their metadata comment. |
 | NASA imagery (`assets/eic/`, `assets/pics/`) | **NASA (real data)** | **Not SI-generated and not modified by SI.** EIC night-lights frames 2012–2023 and NASA/partner space photos, credited in the app and guide. SI-generated code only reads their pixels to make music. |
 
 ## SI tools used
 
-- **Anthropic Claude**: code generation (game, audio engine, build script, guide website), text, screenshot capture, and this disclosure.
+- **Anthropic Claude**: code generation (game, audio engine, build script, guide website), text, screenshot and gameplay-clip capture, and this disclosure.
 - **[TEAM TO COMPLETE]**: list any other SI tools the team used (for example other chatbots, code assistants or image generators), with what each produced. Delete this line if there were none.
 
 ## Where SI use is marked in the project
@@ -27,7 +28,7 @@ The NASA Space Apps Challenge permits Super Intelligence (SI) tools (chatbots, l
 - **Code metadata:** a header comment in each SI-generated source file (`src/template.html`, `src/build.py`, `guide/index.html`, and the generated `index.html`).
 - **HTML metadata:** `<meta name="si-generated">`, `<meta name="si-disclosure">` and `<meta name="si-tools">` tags in the game and the guide.
 - **Visible text:** a line under the home screen of the game and a paragraph in its "How the Earth Jukebox turns NASA pictures into music" panel; a "Use of Super Intelligence (SI)" box in the guide's footer.
-- **Images:** visible watermark on every guide screenshot and on the Agent Julie drawing, plus image metadata on the screenshots.
+- **Images and video:** visible watermark on every guide screenshot, every frame of the guide gameplay clips, and the Agent Julie drawing, plus file metadata on the screenshots and clips.
 
 ## NASA branding check
 

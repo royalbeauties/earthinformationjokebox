@@ -6,11 +6,11 @@ Built for the NASA Space Apps "Earth Jukebox" challenge: *generate dynamic sonif
 
 ## Use of Super Intelligence (SI)
 
-The **concept and design** of the Earth Jukebox (the idea, the five music missions, Agent Julie and the learning goals) were created by the **human team members**. The prototype itself (code, sound engine, text, guide website and screenshots) was generated with SI tools, including Anthropic's Claude. The NASA pictures are real NASA data and were not made or changed by SI. See **[SI_DISCLOSURE.md](SI_DISCLOSURE.md)** for the full statement required by the NASA Space Apps Challenge.
+The **concept and design** of the Earth Jukebox (the idea, the five music missions, Agent Julie and the learning goals) were created by the **human team members**. The prototype itself (code, sound engine, text, guide website, screenshots and gameplay clips) was generated with SI tools, including Anthropic's Claude. The NASA pictures are real NASA data and were not made or changed by SI. See **[SI_DISCLOSURE.md](SI_DISCLOSURE.md)** for the full statement required by the NASA Space Apps Challenge.
 
 ## Guide website
 
-A companion guide explaining the idea, how it answers the NASA Space Apps 2026 *Earth Information Jukebox* challenge, and how to play each mission (with screenshots) lives in [`guide/`](guide/index.html). On Vercel it is served at `/guide/`.
+A companion guide explaining the idea, how it answers the NASA Space Apps 2026 *Earth Information Jukebox* challenge, and how to play each mission (with screenshots and short silent gameplay clips) lives in [`guide/`](guide/index.html). On Vercel it is served at `/guide/` (`vercel.json` adds the trailing slash so the relative image and video paths resolve). Both the game and the guide are laid out for phones and tablets as well as desktops.
 
 ## Run it
 

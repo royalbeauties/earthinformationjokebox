@@ -136,6 +136,37 @@ footer ul{padding-left:18px}
   nav.top ul{display:none}
   .bar{grid-template-columns:110px 1fr 60px}
 }
+/* video clips */
+.clip .shot{position:relative;aspect-ratio:1280/768}
+.clip video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
+figcaption a{color:var(--muted)}
+.step>*,.hero .grid>*{min-width:0}
+
+/* phones */
+@media (max-width:860px){
+  nav.top .wrap{flex-wrap:wrap;height:auto;padding-top:8px;padding-bottom:6px;row-gap:4px}
+  nav.top ul{display:flex;order:3;flex:1 1 100%;margin:0 -22px;padding:0 16px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  nav.top ul::-webkit-scrollbar{display:none}
+  nav.top .btn{margin-left:auto}
+  section{scroll-margin-top:100px}
+  header.hero{padding:36px 0 28px}
+  .step{gap:20px;margin-bottom:44px}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  nav.top ul{margin:0 -16px;padding:0 10px 4px}
+  nav.top ul a{padding:6px 10px;font-size:14px}
+  .lead{font-size:18px}
+  section{padding:44px 0}
+  .sub{font-size:16px}
+  h3{font-size:20px}
+  .card{padding:18px}
+  .map td{padding:12px 14px;font-size:15px}
+  .sound th,.sound td{padding:10px 12px;font-size:14px}
+  .bar{grid-template-columns:84px 1fr 52px;gap:8px;font-size:14px}
+  .hero .shot{transform:none}
+  .btn{padding:11px 18px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.hero .shot{transform:none}}
 </style>
 </head>
@@ -284,7 +315,7 @@ footer ul{padding-left:18px}
         </ol>
         <p class="tip">The bar chart under the picture shows total night light for each year. The year label shows the change compared with 2012.</p>
       </div>
-      <figure><a class="shot" href="img/time-machine.jpg"><img src="img/time-machine.jpg" width="1366" height="820" loading="lazy" alt="Earth Time Machine playing India 2014, labelled plus 14 percent light, with a scan line crossing the frame and a bar chart of night light from 2012 to 2023."></a><figcaption>India, 2014: the scan line plays each city it crosses.</figcaption></figure>
+      <figure class="clip"><div class="shot"><video poster="img/time-machine.jpg" width="1280" height="768" muted loop playsinline controls preload="none" aria-label="Earth Time Machine playing India 2014, labelled plus 14 percent light, with a scan line crossing the frame and a bar chart of night light from 2012 to 2023."><source src="video/time-machine.mp4" type="video/mp4"><source src="video/time-machine.webm" type="video/webm"><a href="video/time-machine.mp4">Download the clip</a></video></div><figcaption>Silent preview: India 2012 → 2023, the scan line plays each year. <a href="img/time-machine.jpg">Still image</a></figcaption></figure>
     </div>
 
     <div class="step" id="melody">
@@ -298,7 +329,7 @@ footer ul{padding-left:18px}
         </ol>
         <p class="tip">Change the picture with the strip at the top, without leaving the mission.</p>
       </div>
-      <figure><a class="shot" href="img/star-melody.jpg"><img src="img/star-melody.jpg" width="1366" height="820" loading="lazy" alt="Star Melody on India at Night 2023: a glowing yellow line joins city lights, and note cards G, C, A show the melody."></a><figcaption>India's brightest cities become the notes G, C and A.</figcaption></figure>
+      <figure class="clip"><div class="shot"><video poster="img/star-melody.jpg" width="1280" height="768" muted loop playsinline controls preload="none" aria-label="Star Melody on India at Night 2023: a glowing yellow line joins city lights, and note cards G, C, A show the melody."><source src="video/star-melody.mp4" type="video/mp4"><source src="video/star-melody.webm" type="video/webm"><a href="video/star-melody.mp4">Download the clip</a></video></div><figcaption>Silent preview: Julie joins India's brightest lights into a melody. <a href="img/star-melody.jpg">Still image</a></figcaption></figure>
     </div>
 
     <div class="step" id="choir">
@@ -312,7 +343,7 @@ footer ul{padding-left:18px}
         </ol>
         <p class="tip">Play it both ways and ask: what does harmony add?</p>
       </div>
-      <figure><a class="shot" href="img/star-choir.jpg"><img src="img/star-choir.jpg" width="1366" height="820" loading="lazy" alt="Star Choir on India at Night 2023 with Melody plus harmony selected; a highlighted column shows lights singing together and note stacks show chords."></a><figcaption>The highlighted column sings a chord.</figcaption></figure>
+      <figure class="clip"><div class="shot"><video poster="img/star-choir.jpg" width="1280" height="768" muted loop playsinline controls preload="none" aria-label="Star Choir on India at Night 2023 with Melody plus harmony selected; a highlighted column shows lights singing together and note stacks show chords."><source src="video/star-choir.mp4" type="video/mp4"><source src="video/star-choir.webm" type="video/webm"><a href="video/star-choir.mp4">Download the clip</a></video></div><figcaption>Silent preview: each column of lights sings a chord. <a href="img/star-choir.jpg">Still image</a></figcaption></figure>
     </div>
 
     <div class="step" id="tempo">
@@ -325,7 +356,7 @@ footer ul{padding-left:18px}
           <li>Count the beats 1 2 3 4 and see how long the trip takes at each tempo.</li>
         </ol>
       </div>
-      <figure><a class="shot" href="img/rocket-tempo.jpg"><img src="img/rocket-tempo.jpg" width="1366" height="820" loading="lazy" alt="Rocket Tempo at 90 beats per minute: a rocket line crosses India and lights flash with note letters as it passes, with beat counter 1 to 4."></a><figcaption>At 90 BPM the rocket crosses the picture in 5.3 seconds.</figcaption></figure>
+      <figure class="clip"><div class="shot"><video poster="img/rocket-tempo.jpg" width="1280" height="768" muted loop playsinline controls preload="none" aria-label="Rocket Tempo at 90 beats per minute: a rocket line crosses India and lights flash with note letters as it passes, with beat counter 1 to 4."><source src="video/rocket-tempo.mp4" type="video/mp4"><source src="video/rocket-tempo.webm" type="video/webm"><a href="video/rocket-tempo.mp4">Download the clip</a></video></div><figcaption>Silent preview: the rocket flies at 90 beats per minute. <a href="img/rocket-tempo.jpg">Still image</a></figcaption></figure>
     </div>
 
     <div class="step" id="sandbox">
@@ -338,7 +369,7 @@ footer ul{padding-left:18px}
           <li>Try <b>🎲 Surprise me</b>, change the tempo, or <b>🙈 Hide picture</b> to focus on the grid.</li>
         </ol>
       </div>
-      <figure><a class="shot" href="img/music-sandbox.jpg"><img src="img/music-sandbox.jpg" width="1366" height="820" loading="lazy" alt="Music Sandbox: a 16-step grid over India at night with notes C, G, E and D turned on where lights are, plus kick and clap drum squares."></a><figcaption>A 16-step sequencer laid over the EIC frame.</figcaption></figure>
+      <figure class="clip"><div class="shot"><video poster="img/music-sandbox.jpg" width="1280" height="768" muted loop playsinline controls preload="none" aria-label="Music Sandbox: a 16-step grid over India at night with notes C, G, E and D turned on where lights are, plus kick and clap drum squares."><source src="video/music-sandbox.mp4" type="video/mp4"><source src="video/music-sandbox.webm" type="video/webm"><a href="video/music-sandbox.mp4">Download the clip</a></video></div><figcaption>Silent preview: the Nile picture fills the 16-step grid, then plays. <a href="img/music-sandbox.jpg">Still image</a></figcaption></figure>
     </div>
 
     <div class="step" id="quiz">
@@ -410,7 +441,7 @@ footer ul{padding-left:18px}
       <li>All sounds are synthesized in the browser; no audio files are used. Font: Fredoka (Google Fonts).</li>
     </ul>
     <p>Agent Julie is an original cartoon character named in honour of Canadian astronaut Julie Payette; she is not a likeness of a real person.</p>
-    <p>Made for the <a href="https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/">NASA Space Apps Challenge 2026: The Earth Information Jukebox</a>. Screenshots are from the game itself.</p>
+    <p>Made for the <a href="https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/">NASA Space Apps Challenge 2026: The Earth Information Jukebox</a>. Screenshots and silent video clips are from the game itself.</p>
     <div id="si-use" style="margin-top:22px;padding:16px 20px;border:1px solid #ffffff22;border-radius:16px;background:#ffffff08">
       <p><b>🤖 Use of Super Intelligence (SI).</b> As required by the NASA Space Apps Challenge, we disclose where SI tools were used:</p>
       <ul>
@@ -418,11 +449,25 @@ footer ul{padding-left:18px}
         <li><b>Code:</b> the whole prototype (game, build script and this guide website) was generated with SI tools, including Anthropic's Claude, from the team's concept and design.</li>
         <li><b>Sound:</b> every sound is synthesized live by SI-generated code; no SI-generated audio files are used.</li>
         <li><b>Text:</b> the in-game explanations and this guide were written with SI assistance from the team's design.</li>
-        <li><b>Images:</b> the screenshots on this page were captured by an SI tool and carry a visible "SI-generated" watermark. The Agent Julie drawing is SI-generated and is marked in the game. The NASA pictures are real NASA data and were <b>not</b> generated or modified by SI.</li>
+        <li><b>Images and video:</b> the screenshots and the silent gameplay clips on this page were captured by an SI tool and carry a visible "SI-generated" watermark. The Agent Julie drawing is SI-generated and is marked in the game. The NASA pictures are real NASA data and were <b>not</b> generated or modified by SI.</li>
       </ul>
       <p>Full details: <a href="https://github.com/royalbeauties/earthinformationjokebox/blob/main/SI_DISCLOSURE.md">SI_DISCLOSURE.md</a>.</p>
     </div>
   </div>
 </footer>
+<script>
+/* SI-generated code (Claude); concept and design by the human team. See SI_DISCLOSURE.md.
+   Plays each silent gameplay clip while it is on screen and pauses it when it scrolls away. */
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('.clip video'));
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(still||!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
+    if(e.isIntersecting){ if(v.preload==='none') v.preload='auto'; var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+    else if(!v.paused){ v.pause(); }
+  });},{threshold:0.5});
+  vids.forEach(function(v){ v.muted=true; io.observe(v); });
+})();
+</script>
 </body>
 </html>
