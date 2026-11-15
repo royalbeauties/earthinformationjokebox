@@ -1,8 +1,19 @@
 <!DOCTYPE html>
+<!--
+  SI-GENERATED CODE NOTICE (NASA Space Apps Challenge 2026)
+  The code in this file was generated with Super Intelligence (SI) tools,
+  including Anthropic's Claude. The concept, game design and learning goals
+  were created by the human team members of this project.
+  NASA imagery shown by the app is real NASA data, not SI-generated.
+  Full disclosure: SI_DISCLOSURE.md in the repository root.
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="si-generated" content="true">
+<meta name="si-disclosure" content="Code generated with Super Intelligence (SI) tools, including Anthropic Claude. Concept and design by the human team members. NASA imagery is real NASA data, not SI-generated. See SI_DISCLOSURE.md.">
+<meta name="si-tools" content="Anthropic Claude (code, text, screenshots); other tools: see SI_DISCLOSURE.md">
 <title>Earth Jukebox with Agent Julie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -300,7 +311,9 @@ input[type=range].kid{width:100%;height:30px;accent-color:var(--yellow)}
       <tr><td>Brightness of a light</td><td>Volume and sparkle</td></tr>
       <tr><td>Night lights year by year, 2012 → 2023 (total light measured in each EIC frame)</td><td>More light = more notes, faster tempo, and extra instruments joining in (Earth Time Machine)</td></tr></table>
       <p><b>How the computer finds the lights:</b> each pixel's brightness is compared with the average of its neighbourhood (local contrast), so cities stand out but large grey areas such as ice stay quiet. The brightest separate points become the "stars" you can tap. Colours are sorted by hue and saturation. Pictures: NASA Earth Information Center night-lights visualization (2012–2023), NASA/ISS crew, NASA Webb, NASA Solar Dynamics Observatory, NASA Chandra.</p>
+      <p><b>🤖 Use of Super Intelligence (SI):</b> the code of this prototype, including the music and sound engine that makes every sound live, was generated with SI tools (including Anthropic's Claude). The <b>concept and design</b> of the Earth Jukebox and Agent Julie were created by the <b>human team members</b>. The Earth pictures are real NASA data and were not made by SI. Details: <code>SI_DISCLOSURE.md</code> in the project repository.</p>
     </details>
+    <p class="si-note" style="text-align:center;font-size:13px;color:var(--soft);opacity:.85;margin:14px 0 0">🤖 SI-generated code and sound engine · concept &amp; design by the human team · Earth pictures: NASA EIC (real data, not SI)</p>
   </div></section>
 
   <!-- MISSION -->
@@ -445,7 +458,7 @@ try{ ST.badges=JSON.parse(localStorage.getItem('sml_badges')||'{}'); }catch(e){}
 function saveBadges(){ try{ localStorage.setItem('sml_badges',JSON.stringify(ST.badges)); }catch(e){} }
 
 /* =========================================================
-   AGENT JULIE (original cartoon astronaut)
+   AGENT JULIE (original cartoon astronaut; character concept by the human team, SVG drawing generated with SI tools)
    ========================================================= */
 function julieSVG(size){ return `<svg width="${size}" height="${size*1.17}" viewBox="0 0 120 140" aria-label="Agent Julie">
  <defs><radialGradient id="vis" cx="40%" cy="35%"><stop offset="0" stop-color="#3a4fa8"/><stop offset="1" stop-color="#141c4a"/></radialGradient></defs>
@@ -475,6 +488,8 @@ function julieSVG(size){ return `<svg width="${size}" height="${size*1.17}" view
  <!-- visor shine -->
  <path d="M36 40 Q44 27 58 25" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55"/>
  <circle cx="80" cy="34" r="3" fill="#fff" opacity=".5"/>
+ <!-- visible SI watermark: this character drawing was generated with SI tools -->
+ <text x="60" y="139" font-size="7" font-weight="600" text-anchor="middle" fill="#c9d0ff" opacity=".8" font-family="Fredoka,sans-serif">SI-generated</text>
 </svg>`; }
 document.querySelectorAll('.avatar').forEach(a=>a.innerHTML=julieSVG(+a.dataset.size));
 
