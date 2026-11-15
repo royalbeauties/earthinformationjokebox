@@ -10,7 +10,7 @@ The **concept and design** of the Earth Jukebox (the idea, the five music missio
 
 ## Guide website
 
-A companion guide explaining the idea, how it answers the NASA Space Apps 2026 *Earth Information Jukebox* challenge, and how to play each mission (with screenshots and short silent gameplay clips) lives in [`guide/`](guide/index.html). On Vercel it is served at `/guide/` (`vercel.json` adds the trailing slash so the relative image and video paths resolve). Both the game and the guide are laid out for phones and tablets as well as desktops.
+A companion guide explaining the idea, how it answers the NASA Space Apps 2026 *Earth Information Jukebox* challenge, and how to play each mission (with a 30-second captioned intro video, screenshots and short silent gameplay clips) lives in [`guide/`](guide/index.html). On Vercel it is served at `/guide/` (`vercel.json` adds the trailing slash so the relative image and video paths resolve). Both the game and the guide are laid out for phones and tablets as well as desktops.
 
 ## Run it
 

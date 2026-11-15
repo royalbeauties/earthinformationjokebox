@@ -136,6 +136,12 @@ footer ul{padding-left:18px}
   nav.top ul{display:none}
   .bar{grid-template-columns:110px 1fr 60px}
 }
+.intro .shot{aspect-ratio:1280/768;transform:none}
+.intro video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
+.transcript{margin-top:10px;font-size:15px;color:var(--soft)}
+.transcript summary{cursor:pointer;color:var(--muted);text-align:center}
+.transcript ol{padding-left:22px;margin:8px 0}
+.transcript p{font-size:14px;color:var(--muted)}
 /* video clips */
 .clip .shot{position:relative;aspect-ratio:1280/768}
 .clip video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
@@ -149,7 +155,8 @@ figcaption a{color:var(--muted)}
   nav.top ul::-webkit-scrollbar{display:none}
   nav.top .btn{margin-left:auto}
   section{scroll-margin-top:100px}
-  header.hero{padding:36px 0 28px}
+  header.hero{padding:20px 0 28px}
+  .hero .intro{order:-1}
   .step{gap:20px;margin-bottom:44px}
 }
 @media (max-width:560px){
@@ -199,9 +206,23 @@ figcaption a{color:var(--muted)}
         <a class="btn ghost" href="#play">📖 How to play</a>
       </div>
     </div>
-    <a class="shot" href="img/home.jpg" aria-label="Open the home screen screenshot full size">
-      <img src="img/home.jpg" width="1366" height="820" alt="The Earth Jukebox home screen: Agent Julie, a cartoon astronaut, greets the player above a grid of NASA night-lights picture records.">
-    </a>
+    <figure class="intro">
+      <div class="shot"><video id="introVideo" poster="img/intro-poster.jpg" width="1280" height="768" autoplay muted loop playsinline controls preload="auto" aria-label="30-second captioned introduction to the Earth Jukebox and how it was built. A transcript follows the video." aria-describedby="introText">
+        <source src="video/intro.mp4" type="video/mp4"><source src="video/intro.webm" type="video/webm"><a href="video/intro.mp4">Download the intro video</a></video></div>
+      <details class="transcript" id="introText"><summary>30-second intro · read the captions</summary>
+        <ol>
+          <li>What if you could listen to our changing planet?</li>
+          <li>We start with real NASA Earth Information Center pictures of Earth at night, 2012 to 2023.</li>
+          <li>Our code finds every city light. Higher lights become higher notes: a melody.</li>
+          <li>Lights in the same column sing together, snapped to friendly chords: harmony.</li>
+          <li>More light means more notes and a faster tempo, so you can hear India's lights grow.</li>
+          <li>Five music missions, quizzes and Agent Julie make it an interactive way to explore NASA images.</li>
+          <li>How we built it: concept and design by our human team; real NASA data, not made or changed by SI; code and sound built with SI tools (Claude), with every note made live in the browser from the picture's pixels.</li>
+          <li>Turn your sound on and press Play!</li>
+        </ol>
+        <p>The video is silent; captions are part of the picture. SI-generated video, watermarked.</p>
+      </details>
+    </figure>
   </div>
 </header>
 
@@ -441,7 +462,7 @@ figcaption a{color:var(--muted)}
       <li>All sounds are synthesized in the browser; no audio files are used. Font: Fredoka (Google Fonts).</li>
     </ul>
     <p>Agent Julie is an original cartoon character named in honour of Canadian astronaut Julie Payette; she is not a likeness of a real person.</p>
-    <p>Made for the <a href="https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/">NASA Space Apps Challenge 2026: The Earth Information Jukebox</a>. Screenshots and silent video clips are from the game itself.</p>
+    <p>Made for the <a href="https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/">NASA Space Apps Challenge 2026: The Earth Information Jukebox</a>. Screenshots and silent video clips are from the game itself; the intro video combines them with captions.</p>
     <div id="si-use" style="margin-top:22px;padding:16px 20px;border:1px solid #ffffff22;border-radius:16px;background:#ffffff08">
       <p><b>🤖 Use of Super Intelligence (SI).</b> As required by the NASA Space Apps Challenge, we disclose where SI tools were used:</p>
       <ul>
@@ -449,7 +470,7 @@ figcaption a{color:var(--muted)}
         <li><b>Code:</b> the whole prototype (game, build script and this guide website) was generated with SI tools, including Anthropic's Claude, from the team's concept and design.</li>
         <li><b>Sound:</b> every sound is synthesized live by SI-generated code; no SI-generated audio files are used.</li>
         <li><b>Text:</b> the in-game explanations and this guide were written with SI assistance from the team's design.</li>
-        <li><b>Images and video:</b> the screenshots and the silent gameplay clips on this page were captured by an SI tool and carry a visible "SI-generated" watermark. The Agent Julie drawing is SI-generated and is marked in the game. The NASA pictures are real NASA data and were <b>not</b> generated or modified by SI.</li>
+        <li><b>Images and video:</b> the screenshots, the silent gameplay clips and the captioned intro video on this page were captured and edited by an SI tool and carry a visible "SI-generated" watermark. The Agent Julie drawing is SI-generated and is marked in the game. The NASA pictures are real NASA data and were <b>not</b> generated or modified by SI.</li>
       </ul>
       <p>Full details: <a href="https://github.com/royalbeauties/earthinformationjokebox/blob/main/SI_DISCLOSURE.md">SI_DISCLOSURE.md</a>.</p>
     </div>
@@ -461,6 +482,8 @@ figcaption a{color:var(--muted)}
 (function(){
   var vids=[].slice.call(document.querySelectorAll('.clip video'));
   var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var intro=document.getElementById('introVideo');
+  if(still&&intro){ intro.removeAttribute('autoplay'); intro.pause(); }
   if(still||!('IntersectionObserver' in window)) return;
   var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
     if(e.isIntersecting){ if(v.preload==='none') v.preload='auto'; var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
