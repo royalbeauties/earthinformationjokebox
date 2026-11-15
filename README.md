@@ -4,6 +4,10 @@ An interactive web jukebox that turns NASA Earth Information Center (EIC) imager
 
 Built for the NASA Space Apps "Earth Jukebox" challenge: *generate dynamic sonifications from NASA's EIC visual frames.*
 
+## Guide website
+
+A companion guide explaining the idea, how it answers the NASA Space Apps 2026 *Earth Information Jukebox* challenge, and how to play each mission (with screenshots) lives in [`guide/`](guide/index.html). On Vercel it is served at `/guide/`.
+
 ## Run it
 
 Open `index.html` in a browser (Chrome, Edge, Firefox or Safari). Nothing else is needed: every picture is embedded in the file and every sound is synthesized live with the Web Audio API.

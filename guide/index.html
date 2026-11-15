@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Earth Jukebox: The Guide · NASA Space Apps 2026</title>
+<meta name="description" content="How the Earth Jukebox with Agent Julie turns NASA Earth Information Center night-lights frames into music, and how to play it. A NASA Space Apps Challenge 2026 project for The Earth Information Jukebox challenge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1240; --bg2:#171b5c; --card:#1d2270; --card2:#252b85; --ink:#fff; --soft:#c9cdf5; --muted:#9aa0d8;
+  --yellow:#FFD84D; --pink:#FF7AB6; --teal:#3EE0CF; --violet:#A98BFF; --orange:#FF9F43; --blue:#5AB8FF;
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Fredoka,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);line-height:1.6;
+  background:radial-gradient(1200px 600px at 80% -10%,#3a2a8a 0,transparent 60%),radial-gradient(900px 500px at -10% 30%,#123f6b 0,transparent 60%),var(--bg);}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.55;z-index:-1;
+  background-image:radial-gradient(1px 1px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 120px 80px,#fff,transparent),radial-gradient(1.5px 1.5px at 200px 160px,#fff,transparent),radial-gradient(1px 1px at 300px 40px,#fff,transparent),radial-gradient(1px 1px at 380px 220px,#fff,transparent);
+  background-size:420px 260px}
+a{color:var(--yellow)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--yellow);color:#111;padding:8px 14px;border-radius:10px;z-index:10}
+.skip:focus{left:12px}
+
+/* nav */
+nav.top{position:sticky;top:0;z-index:5;background:#0f1240e6;backdrop-filter:blur(8px);border-bottom:1px solid #ffffff14}
+nav.top .wrap{display:flex;align-items:center;gap:18px;height:62px}
+nav.top .brand{font-weight:700;font-size:20px;text-decoration:none;color:#fff;white-space:nowrap}
+nav.top .brand span{color:var(--yellow)}
+nav.top ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0;overflow-x:auto}
+nav.top ul a{display:block;color:var(--soft);text-decoration:none;padding:6px 12px;border-radius:999px;font-size:15px;white-space:nowrap}
+nav.top ul a:hover{background:#ffffff14;color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;text-decoration:none;border:0;border-radius:999px;padding:12px 22px;cursor:pointer;box-shadow:inset 0 -4px 0 #0003;transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn.go{background:var(--yellow);color:#1b1640}
+.btn.pink{background:var(--pink);color:#2a0f22}
+.btn.ghost{background:#ffffff14;color:#fff;box-shadow:none}
+nav.top .btn{padding:8px 16px;font-size:15px}
+
+/* hero */
+header.hero{padding:70px 0 40px}
+.hero .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.eyebrow{display:inline-block;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:#3ee0cf1a;padding:4px 12px;border-radius:999px}
+h1{font-size:clamp(36px,5vw,60px);line-height:1.08;margin:16px 0 14px}
+h1 .hl{background:linear-gradient(90deg,var(--yellow),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:20px;color:var(--soft);margin:0 0 26px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+.shot{display:block;border-radius:var(--radius);overflow:hidden;border:3px solid #ffffff22;box-shadow:0 20px 50px #0007;background:#000}
+.shot img{display:block;width:100%;height:auto}
+.hero .shot{transform:rotate(1.2deg)}
+
+/* sections */
+section{padding:64px 0;scroll-margin-top:62px}
+section.alt{background:#ffffff06;border-top:1px solid #ffffff10;border-bottom:1px solid #ffffff10}
+h2{font-size:clamp(28px,3.4vw,40px);margin:0 0 8px;line-height:1.15}
+h2 .em{margin-right:8px}
+.sub{color:var(--soft);font-size:18px;max-width:780px;margin:0 0 30px}
+h3{font-size:23px;margin:0 0 6px}
+p{margin:0 0 14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);border-radius:var(--radius);padding:22px;border:1px solid #ffffff12}
+.card .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:26px;margin-bottom:12px}
+.card p{color:var(--soft);font-size:16px;margin:0}
+.note{background:#ffd84d14;border:1px solid #ffd84d40;border-radius:16px;padding:14px 18px;color:var(--soft);font-size:15px}
+
+/* challenge map table */
+.map{width:100%;border-collapse:separate;border-spacing:0 10px}
+.map th{text-align:left;color:var(--muted);font-weight:500;font-size:14px;text-transform:uppercase;letter-spacing:.06em;padding:0 16px}
+.map td{background:var(--card);padding:16px;vertical-align:top;font-size:16px}
+.map td:first-child{border-radius:16px 0 0 16px;width:34%;font-weight:600}
+.map td:last-child{border-radius:0 16px 16px 0;color:var(--soft)}
+.map td b{color:#fff}
+
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.pipe .card{position:relative;padding-top:30px}
+.pipe .card::before{counter-increment:s;content:counter(s);position:absolute;top:-14px;left:20px;width:34px;height:34px;border-radius:50%;background:var(--yellow);color:#1b1640;font-weight:700;display:grid;place-items:center}
+.sound{width:100%;border-collapse:collapse;margin-top:26px;background:var(--card);border-radius:var(--radius);overflow:hidden}
+.sound th,.sound td{padding:14px 18px;text-align:left;border-bottom:1px solid #ffffff12;font-size:16px}
+.sound th{background:var(--card2);font-weight:600}
+.sound tr:last-child td{border-bottom:0}
+.sound td:last-child{color:var(--soft)}
+
+/* how to play steps */
+.step{display:grid;grid-template-columns:1fr 1.25fr;gap:36px;align-items:center;margin:0 0 56px}
+.step:nth-of-type(even){grid-template-columns:1.25fr 1fr}
+.step:nth-of-type(even) .txt{order:2}
+.tag{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;padding:4px 12px;border-radius:999px;margin-bottom:10px;color:#1b1640}
+.step ol,.step ul{margin:0 0 12px;padding-left:22px;color:var(--soft)}
+.step li{margin:4px 0}
+.step li b{color:#fff}
+.tip{font-size:15px;color:var(--soft);background:#3ee0cf14;border-left:4px solid var(--teal);padding:10px 14px;border-radius:0 12px 12px 0}
+figure{margin:0}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px;text-align:center}
+
+/* results */
+.bars{display:grid;gap:14px;max-width:760px}
+.bar{display:grid;grid-template-columns:160px 1fr 70px;gap:14px;align-items:center;font-size:17px}
+.bar .track{height:22px;background:#ffffff12;border-radius:999px;position:relative;overflow:hidden}
+.bar .fill{position:absolute;top:0;bottom:0;border-radius:999px}
+.bar .val{font-weight:700;text-align:right}
+.bar .zero{position:absolute;top:-4px;bottom:-4px;width:2px;background:#fff8}
+
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.controls .card{padding:18px}
+.controls h3{font-size:19px}
+
+footer{padding:40px 0 60px;color:var(--muted);font-size:14px;border-top:1px solid #ffffff12}
+footer ul{padding-left:18px}
+
+@media (max-width:860px){
+  .hero .grid,.step,.step:nth-of-type(even){grid-template-columns:1fr}
+  .step:nth-of-type(even) .txt{order:0}
+  .pipe{grid-template-columns:1fr}
+  .map td:first-child{width:auto}
+  .map,.map tbody,.map tr,.map td{display:block}
+  .map thead{display:none}
+  .map td:first-child{border-radius:16px 16px 0 0}
+  .map td:last-child{border-radius:0 0 16px 16px}
+  nav.top ul{display:none}
+  .bar{grid-template-columns:110px 1fr 60px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.hero .shot{transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="top" aria-label="Guide sections">
+  <div class="wrap">
+    <a class="brand" href="#top">🌍 Earth Jukebox <span>Guide</span></a>
+    <ul>
+      <li><a href="#challenge">The challenge</a></li>
+      <li><a href="#idea">Our idea</a></li>
+      <li><a href="#science">Pictures → music</a></li>
+      <li><a href="#play">How to play</a></li>
+      <li><a href="#results">What we heard</a></li>
+      <li><a href="#teachers">Teachers</a></li>
+    </ul>
+    <a class="btn go" href="../">▶ Play</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow">NASA Space Apps Challenge 2026</span>
+      <h1>Listen to our <span class="hl">changing planet</span></h1>
+      <p class="lead">The <b>Earth Jukebox with Agent Julie</b> turns real NASA Earth Information Center pictures of Earth at night into music. Children aged 7 to 10 pick a picture, and every city light becomes a note they can see, hear and play with.</p>
+      <div class="actions">
+        <a class="btn go" href="../">▶ Play the Earth Jukebox</a>
+        <a class="btn ghost" href="#play">📖 How to play</a>
+      </div>
+    </div>
+    <a class="shot" href="img/home.jpg" aria-label="Open the home screen screenshot full size">
+      <img src="img/home.jpg" width="1366" height="820" alt="The Earth Jukebox home screen: Agent Julie, a cartoon astronaut, greets the player above a grid of NASA night-lights picture records.">
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ CHALLENGE ============ -->
+<section id="challenge" class="alt">
+  <div class="wrap">
+    <h2><span class="em">🛰️</span>The challenge: The Earth Information Jukebox</h2>
+    <p class="sub">NASA's <b>Earth Information Center (EIC)</b> shows how our planet is changing through rich visualizations made from satellite data. The 2026 Space Apps challenge asks teams to <b>generate dynamic sonifications from the EIC's visual frames</b>: to let people hear Earth data, not only see it.</p>
+
+    <div class="cards">
+      <div class="card"><div class="ic" style="background:#5ab8ff33">🖼️</div><h3>Start from EIC frames</h3><p>Use the actual visuals the Earth Information Center shows the public, not a separate dataset, so the sound and the picture tell the same story.</p></div>
+      <div class="card"><div class="ic" style="background:#3ee0cf33">🔊</div><h3>Make it dynamic</h3><p>The sound should be generated from the data and change when the data changes, frame by frame and place by place.</p></div>
+      <div class="card"><div class="ic" style="background:#ff7ab633">🧭</div><h3>Keep it faithful</h3><p>Listeners should be able to trust what they hear: more of something in the picture should sound like more of something in the music.</p></div>
+      <div class="card"><div class="ic" style="background:#a98bff33">🤝</div><h3>Open the data to more people</h3><p>Sound reaches people that charts miss: young learners, people who are blind or have low vision, and anyone who learns better by listening and doing.</p></div>
+    </div>
+    <p class="note" style="margin-top:22px">📌 This summary is our reading of the challenge. Please see the official <a href="https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/">challenge page</a> and its <a href="https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/?tab=resources">resources tab</a> for the full brief.</p>
+  </div>
+</section>
+
+<!-- ============ IDEA ============ -->
+<section id="idea">
+  <div class="wrap">
+    <h2><span class="em">💡</span>Our idea: a jukebox where Earth's lights sing</h2>
+    <p class="sub">From space, Earth's cities glow like stars. We treat each EIC night-lights frame as a <b>record</b> and each light as a <b>note</b>. Agent Julie, an astronaut and music detective, guides children through five music missions, so they learn melody, harmony, tempo, rhythm and timbre while discovering how night light on Earth grew from 2012 to 2023.</p>
+
+    <table class="map">
+      <thead><tr><th>What the challenge asks for</th><th>How the Earth Jukebox answers it</th></tr></thead>
+      <tbody>
+        <tr><td>🖼️ Sonify the EIC's visual frames</td><td>Every Earth picture is an <b>EIC night-lights frame</b>: the world map for each year 2012 → 2023, close-ups of India, Western Europe and the Nile, and the EIC change maps (purple = new light, orange = less light).</td></tr>
+        <tr><td>🔊 Dynamic, data-driven sound</td><td>No audio files at all. The browser reads the pixels of each frame, finds the lights and <b>synthesizes the music live</b> with the Web Audio API. A different picture, year, region or slider position gives different music.</td></tr>
+        <tr><td>📈 Show change over time</td><td>The <b>Earth Time Machine</b> plays each year in turn. More light means more notes, a faster tempo and more instruments, so you can <b>hear</b> India's lights more than double.</td></tr>
+        <tr><td>🧭 Faithful, readable mapping</td><td>One clear rule per dimension: <b>height → pitch</b>, <b>brightness and size → volume</b>, <b>same column → harmony</b>, <b>colour → instrument</b>, <b>total light → tempo and layers</b>. A scan line, rocket or glowing path always shows which light is singing.</td></tr>
+        <tr><td>🤝 Accessible and inclusive</td><td>Agent Julie can <b>read everything aloud</b> (“Julie talks” and “Read to me”). Big buttons, plain words, and a sound-first design. It is a single file that runs in any modern browser with no install or account.</td></tr>
+        <tr><td>🎓 Learning and engagement</td><td>Five missions, a “music word” explainer with a <b>Show me on the picture!</b> demo, a 3-question quiz per mission, and medals. Quiz questions use data measured from the pictures.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ SCIENCE ============ -->
+<section id="science" class="alt">
+  <div class="wrap">
+    <h2><span class="em">🔬</span>How a NASA picture becomes music</h2>
+    <p class="sub">Everything happens in the browser, in three steps.</p>
+    <div class="pipe">
+      <div class="card"><h3>Find the lights</h3><p>Each pixel's brightness is compared with its neighbourhood (local contrast). Touching bright pixels are grouped into clusters, and big merged glows are split into tiles. For pictures without clear bright spots, a backup picks the brightest points spread across the image.</p></div>
+      <div class="card"><h3>Rank them</h3><p>Clusters are ranked by total brightness. The <b>💡 Lights slider</b> starts with only the brightest few and adds dimmer ones, up to 150 circled lights.</p></div>
+      <div class="card"><h3>Map data to sound</h3><p>Each light's position, brightness, size and colour become pitch, volume, harmony and instrument. Notes stay in a friendly scale, so every result sounds musical while its shape comes from the data.</p></div>
+    </div>
+
+    <table class="sound">
+      <thead><tr><th>What the picture shows</th><th>What you hear</th></tr></thead>
+      <tbody>
+        <tr><td>⬆️ Height of a light</td><td>Pitch: a higher light never plays a lower note</td></tr>
+        <tr><td>✨ Brightness and size of a light cluster</td><td>Volume: bright clusters are louder, dim ones are softer</td></tr>
+        <tr><td>🎶 Lights in the same column</td><td>Notes played together (harmony, snapped to C, F, G or Am chords)</td></tr>
+        <tr><td>🎨 Colour of a light</td><td>Instrument (timbre), when 🎨 <i>picture colours</i> is selected</td></tr>
+        <tr><td>🌍 Total night light in a year's frame</td><td>Number of notes, tempo and extra instrument layers (Earth Time Machine)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ HOW TO PLAY ============ -->
+<section id="play">
+  <div class="wrap">
+    <h2><span class="em">🎮</span>How to play</h2>
+    <p class="sub">Open the game, turn your sound on, and follow Agent Julie. Here is each screen, step by step.</p>
+
+    <div class="step">
+      <div class="txt">
+        <span class="tag" style="background:var(--yellow)">Step 1 · Pick a picture record 💿</span>
+        <h3>Choose what Earth will sing</h3>
+        <ol>
+          <li>Pick one of the <b>EIC Earth pictures</b>: Night Lights 2012 or 2023, the change maps, India, Europe, the Nile, or Earth from the Space Station.</li>
+          <li>Or try a <b>bonus space record</b>: the Cartwheel Galaxy, the Sun, a solar flare, or Cassiopeia A.</li>
+          <li>Agent Julie tells you a short fact about the picture.</li>
+        </ol>
+        <p class="tip">Press <b>🔊 Julie talks</b> (top right) and Julie will read every message out loud.</p>
+      </div>
+      <figure><a class="shot" href="img/home.jpg"><img src="img/home.jpg" width="1366" height="820" loading="lazy" alt="Home screen with Agent Julie's welcome message and a grid of picture records from the NASA Earth Information Center."></a><figcaption>The home screen: Agent Julie and the picture records.</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <div class="txt">
+        <span class="tag" style="background:var(--pink)">Step 2 · Choose a music mission 🎯</span>
+        <h3>Five missions, five music ideas</h3>
+        <ul>
+          <li><b>A ⏳ Earth Time Machine</b>: tempo, melody, harmony</li>
+          <li><b>B 🎵 Star Melody</b>: melody</li>
+          <li><b>C 🎶 Star Choir</b>: harmony</li>
+          <li><b>D 🚀 Rocket Tempo</b>: tempo</li>
+          <li><b>E 🎛️ Music Sandbox</b>: melody, harmony, rhythm</li>
+        </ul>
+        <p class="tip">Finish a mission to earn its patch ✅, then pass its quiz for a 🏅 medal. Your patches show at the top of the screen.</p>
+      </div>
+      <figure><a class="shot" href="img/teachers.jpg"><img src="img/teachers.jpg" width="1366" height="820" loading="lazy" alt="The mission cards A to E, the bonus space pictures, and the music-word buttons Melody, Harmony, Tempo, Rhythm and Timbre."></a><figcaption>The mission cards and the music words.</figcaption></figure>
+    </div>
+
+    <div class="step" id="time-machine">
+      <div class="txt">
+        <span class="tag" style="background:var(--teal)">Mission A · ⏳ Earth Time Machine · 🌍 Earth data</span>
+        <h3>Hear Earth's lights grow, 2012 → 2023</h3>
+        <ol>
+          <li>Choose a region: <b>World</b>, <b>India</b>, <b>Europe</b> or <b>Nile</b>.</li>
+          <li>Press <b>▶ Play 2012 → 2023</b>. A scan line crosses each year's EIC frame, and every light it touches sparkles and sings.</li>
+          <li>Listen: <b>more light = more notes, a faster tempo and more instruments</b>. Sparkly bells join when light has grown a lot.</li>
+          <li>Press <b>⚖️ Compare 2012 and 2023</b> to hear the first and last year back to back, or drag the year slider and tap the bars.</li>
+        </ol>
+        <p class="tip">The bar chart under the picture shows total night light for each year. The year label shows the change compared with 2012.</p>
+      </div>
+      <figure><a class="shot" href="img/time-machine.jpg"><img src="img/time-machine.jpg" width="1366" height="820" loading="lazy" alt="Earth Time Machine playing India 2014, labelled plus 14 percent light, with a scan line crossing the frame and a bar chart of night light from 2012 to 2023."></a><figcaption>India, 2014: the scan line plays each city it crosses.</figcaption></figure>
+    </div>
+
+    <div class="step" id="melody">
+      <div class="txt">
+        <span class="tag" style="background:var(--yellow)">Mission B · 🎵 Star Melody</span>
+        <h3>Connect the stars into a tune</h3>
+        <ol>
+          <li>Press <b>▶ Play the picture's melody</b>. Julie joins the brightest light in each part of the picture, left to right.</li>
+          <li>Watch the note cards: <b>higher stars = higher notes</b>. Julie tells you how many times the tune went up and down.</li>
+          <li>Press <b>✏️ Make my own melody</b>, tap 4 to 8 stars, then <b>Play my melody</b>.</li>
+        </ol>
+        <p class="tip">Change the picture with the strip at the top, without leaving the mission.</p>
+      </div>
+      <figure><a class="shot" href="img/star-melody.jpg"><img src="img/star-melody.jpg" width="1366" height="820" loading="lazy" alt="Star Melody on India at Night 2023: a glowing yellow line joins city lights, and note cards G, C, A show the melody."></a><figcaption>India's brightest cities become the notes G, C and A.</figcaption></figure>
+    </div>
+
+    <div class="step" id="choir">
+      <div class="txt">
+        <span class="tag" style="background:var(--violet)">Mission C · 🎶 Star Choir</span>
+        <h3>Stars that sing together</h3>
+        <ol>
+          <li>Choose <b>🎵 Just melody</b> or <b>🎶 Melody + harmony</b>.</li>
+          <li>Press <b>▶ Play the star choir</b>. Lights in the same column sing at the same time, like a choir.</li>
+          <li>Tap any star to hear its column sing together.</li>
+        </ol>
+        <p class="tip">Play it both ways and ask: what does harmony add?</p>
+      </div>
+      <figure><a class="shot" href="img/star-choir.jpg"><img src="img/star-choir.jpg" width="1366" height="820" loading="lazy" alt="Star Choir on India at Night 2023 with Melody plus harmony selected; a highlighted column shows lights singing together and note stacks show chords."></a><figcaption>The highlighted column sings a chord.</figcaption></figure>
+    </div>
+
+    <div class="step" id="tempo">
+      <div class="txt">
+        <span class="tag" style="background:var(--blue)">Mission D · 🚀 Rocket Tempo</span>
+        <h3>Fast or slow?</h3>
+        <ol>
+          <li>Pick a speed: <b>🐢 Slow</b>, <b>🚶 Walk</b>, <b>🏃 Run</b> or <b>🚀 Rocket</b>, or drag the slider (50 to 180 beats per minute).</li>
+          <li>Press <b>▶ Fly!</b> A rocket flies across the picture and each circled light plays as the rocket passes.</li>
+          <li>Count the beats 1 2 3 4 and see how long the trip takes at each tempo.</li>
+        </ol>
+      </div>
+      <figure><a class="shot" href="img/rocket-tempo.jpg"><img src="img/rocket-tempo.jpg" width="1366" height="820" loading="lazy" alt="Rocket Tempo at 90 beats per minute: a rocket line crosses India and lights flash with note letters as it passes, with beat counter 1 to 4."></a><figcaption>At 90 BPM the rocket crosses the picture in 5.3 seconds.</figcaption></figure>
+    </div>
+
+    <div class="step" id="sandbox">
+      <div class="txt">
+        <span class="tag" style="background:var(--orange)">Mission E · 🎛️ Music Sandbox</span>
+        <h3>Make your own song on any picture</h3>
+        <ol>
+          <li>Press <b>✨ Make music from the picture</b>: notes turn on where the bright lights are, and the drums follow the busiest parts.</li>
+          <li>Tap squares to change the song. A row of notes is a <b>melody</b>, a column is <b>harmony</b>, an empty column is a <b>rest</b>, and the bottom rows are <b>drums</b>.</li>
+          <li>Try <b>🎲 Surprise me</b>, change the tempo, or <b>🙈 Hide picture</b> to focus on the grid.</li>
+        </ol>
+      </div>
+      <figure><a class="shot" href="img/music-sandbox.jpg"><img src="img/music-sandbox.jpg" width="1366" height="820" loading="lazy" alt="Music Sandbox: a 16-step grid over India at night with notes C, G, E and D turned on where lights are, plus kick and clap drum squares."></a><figcaption>A 16-step sequencer laid over the EIC frame.</figcaption></figure>
+    </div>
+
+    <div class="step" id="quiz">
+      <div class="txt">
+        <span class="tag" style="background:var(--yellow)">Every mission · 🧠 Quiz and 📖 music words</span>
+        <h3>Check what you learned</h3>
+        <ul>
+          <li>Press <b>🧠 Quiz</b> for three questions. Some are about music, some ask you to listen, and some use data measured from the pictures, like “Which year had the most night light?”</li>
+          <li>Tap a <b>music word</b> (Melody, Harmony, Tempo, Rhythm, Timbre) for a short explanation, then press <b>🔭 Show me on the picture!</b></li>
+        </ul>
+      </div>
+      <figure><a class="shot" href="img/quiz.jpg"><img src="img/quiz.jpg" width="1366" height="820" loading="lazy" alt="Music Sandbox quiz, question 1: A column with no squares turned on is a... with answers trumpet solo, very loud note, rest."></a><figcaption>A quiz question from the Music Sandbox.</figcaption></figure>
+    </div>
+
+    <h3 style="margin-top:10px">Controls you'll find in every mission</h3>
+    <div class="controls" style="margin-top:14px">
+      <div class="card"><h3>🎺 Instrument picker</h3><p>Trumpet, guitar, piano, saxophone, bells, violin or space synth. Choose 🎨 and each light's colour picks its own instrument.</p></div>
+      <div class="card"><h3>💡 Lights slider</h3><p>Start with only the brightest lights and slide right to add dimmer ones, up to 150.</p></div>
+      <div class="card"><h3>🔊 Read to me</h3><p>Agent Julie reads her message out loud. Turn on “Julie talks” to hear everything.</p></div>
+      <div class="card"><h3>← Missions</h3><p>Go back to the home screen to change the picture or start another mission.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section id="results" class="alt">
+  <div class="wrap">
+    <h2><span class="em">📊</span>What we heard in the data</h2>
+    <p class="sub">Total night light in each region's EIC frame, 2023 compared with 2012, measured in the browser by the same code that makes the music. This is what the Time Machine lets children hear.</p>
+    <div class="bars" role="list">
+      <div class="bar" role="listitem"><span>🇮🇳 India</span><div class="track"><div class="fill" style="left:5%;width:75%;background:linear-gradient(90deg,var(--violet),var(--pink))"></div><div class="zero" style="left:5%"></div></div><span class="val">+125%</span></div>
+      <div class="bar" role="listitem"><span>🌍 World</span><div class="track"><div class="fill" style="left:5%;width:38.4%;background:linear-gradient(90deg,var(--teal),var(--blue))"></div><div class="zero" style="left:5%"></div></div><span class="val">+64%</span></div>
+      <div class="bar" role="listitem"><span>🌊 Nile region</span><div class="track"><div class="fill" style="left:5%;width:16.8%;background:linear-gradient(90deg,var(--yellow),var(--orange))"></div><div class="zero" style="left:5%"></div></div><span class="val">+28%</span></div>
+      <div class="bar" role="listitem"><span>🇪🇺 W. Europe</span><div class="track"><div class="fill" style="left:0.8%;width:4.2%;background:var(--orange)"></div><div class="zero" style="left:5%"></div></div><span class="val">−7%</span></div>
+    </div>
+    <p style="color:var(--soft);margin-top:20px;max-width:780px">India's frames grow loud and busy, the world speeds up, and Western Europe stays about the same, with a small dip in 2020. The EIC change maps help explain why: purple marks new light, orange marks places where satellites saw less.</p>
+  </div>
+</section>
+
+<!-- ============ TEACHERS ============ -->
+<section id="teachers">
+  <div class="wrap">
+    <h2><span class="em">🍎</span>For teachers and judges</h2>
+    <p class="sub">A 30–45 minute lesson plan for ages 7–10, plus everything you need to run it.</p>
+    <div class="cards">
+      <div class="card"><div class="ic" style="background:#ffd84d33">1️⃣</div><h3>Warm up (5 min)</h3><p>Show Night Lights 2012. Ask: what are the dots? Then tap <b>🎵 Melody</b> and press <b>Show me on the picture!</b></p></div>
+      <div class="card"><div class="ic" style="background:#ff7ab633">2️⃣</div><h3>Explore (15 min)</h3><p>In pairs, play Star Melody and Star Choir. One child listens with eyes closed and guesses whether the tune goes up or down.</p></div>
+      <div class="card"><div class="ic" style="background:#3ee0cf33">3️⃣</div><h3>Investigate (10 min)</h3><p>Open the Earth Time Machine, choose India, then Europe. Which one gets faster and fuller? Check with the change map.</p></div>
+      <div class="card"><div class="ic" style="background:#a98bff33">4️⃣</div><h3>Create and share (10 min)</h3><p>Build a song in the Music Sandbox and take the quiz. Talk about why light changed: new towns, new roads, LED lights.</p></div>
+    </div>
+    <div class="note" style="margin-top:22px">
+      <b>Running it:</b> open the game in Chrome, Edge, Firefox or Safari on a laptop or tablet, with speakers or headphones. Everything (pictures and sound) is in one HTML file, so it also works offline once loaded. The source is open on <a href="https://github.com/royalbeauties/earthinformationjokebox">GitHub</a>.
+    </div>
+    <p style="margin-top:28px"><a class="btn go" href="../">▶ Play the Earth Jukebox</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Credits.</b></p>
+    <ul>
+      <li>Night-lights frames: NASA Earth Information Center (EIC) visualization, 2012–2023</li>
+      <li>Earth from the International Space Station: NASA / ISS crew</li>
+      <li>Cartwheel Galaxy: NASA, ESA, CSA, STScI (James Webb Space Telescope)</li>
+      <li>The Sun and Solar Flare: NASA Solar Dynamics Observatory</li>
+      <li>Cassiopeia A: NASA telescopes (Chandra and others)</li>
+      <li>All sounds are synthesized in the browser; no audio files are used. Font: Fredoka (Google Fonts).</li>
+    </ul>
+    <p>Agent Julie is an original cartoon character named in honour of Canadian astronaut Julie Payette; she is not a likeness of a real person.</p>
+    <p>Made for the <a href="https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/">NASA Space Apps Challenge 2026: The Earth Information Jukebox</a>. Screenshots are from the game itself.</p>
+  </div>
+</footer>
+</body>
+</html>
