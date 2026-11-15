@@ -1,3 +1,8 @@
+# SI-GENERATED CODE NOTICE (NASA Space Apps Challenge 2026)
+# This build script was generated with Super Intelligence (SI) tools, including
+# Anthropic's Claude. Concept and design by the human team members.
+# The images it embeds (assets/) are real NASA data, not SI-generated.
+# Full disclosure: SI_DISCLOSURE.md in the repository root.
 import base64, json, os
 HERE=os.path.dirname(os.path.abspath(__file__)); ASSETS=os.path.join(HERE,'..','assets')
 b64=lambda p:'data:image/jpeg;base64,'+base64.b64encode(open(os.path.join(ASSETS,p),'rb').read()).decode()
